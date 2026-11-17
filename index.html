@@ -85,39 +85,64 @@ nav.main .btn{margin-left:10px;padding:13px 22px}
 .burger svg{width:22px;height:22px}
 
 /* ===== hero ===== */
-.hero{padding:64px 0 0;position:relative;z-index:2}
-.hero-top{display:grid;grid-template-columns:1.35fr .65fr;gap:56px;align-items:end}
-.hero h1{font-size:clamp(54px,8.4vw,128px);line-height:.9;letter-spacing:-.045em;font-weight:900}
-.hero h1 .l2{color:var(--blue);display:block}
-.hero h1 .dot{color:var(--gold)}
-.hero-side p{font-size:19px;color:var(--muted);margin:18px 0 28px}
-.hero-side p strong{color:var(--ink)}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
-.ruler{margin:46px 0 28px;height:22px;position:relative;background:
-  repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 12px) bottom/100% 8px no-repeat,
-  repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 120px) bottom/100% 18px no-repeat;opacity:.18}
-.hero-media{position:relative;margin-bottom:-120px;z-index:2}
-.hero-media .img{border-radius:6px;overflow:hidden;aspect-ratio:21/8.4;background:#0b2160}
-.hero-media .img img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.06);animation:settle 1.8s cubic-bezier(.2,.7,.2,1) forwards}
-@keyframes settle{to{transform:scale(1)}}
-.hero-chip{position:absolute;left:28px;top:28px;background:rgba(7,23,65,.78);backdrop-filter:blur(8px);color:#fff;border-radius:999px;padding:9px 16px 9px 12px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;z-index:4}
-.hero-chip i{width:9px;height:9px;border-radius:50%;background:#3ee089;box-shadow:0 0 0 4px rgba(62,224,137,.25)}
-.promise{position:absolute;right:40px;bottom:-56px;width:360px;background:#fff;border-radius:18px;padding:24px 26px;box-shadow:0 30px 60px -30px rgba(10,20,51,.55);z-index:4;border-top:5px solid var(--gold)}
-.promise .mono{color:var(--muted);display:flex;justify-content:space-between}
-.promise h4{font-size:22px;margin:8px 0 14px}
-.promise ul{list-style:none;display:grid;gap:10px}
-.promise li{display:flex;gap:12px;align-items:center;font-weight:600;font-size:15.5px}
-.promise li svg{flex:none;width:22px;height:22px;padding:4px;border-radius:6px;background:#e7f3fd;color:var(--blue)}
+.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;min-height:min(820px,100svh);display:flex;flex-direction:column}
+.hero-bg{position:absolute;top:0;right:0;bottom:0;width:66%;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:58% center;animation:kb 22s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.1) translateX(-1.5%)}}
+.hero-bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,var(--ink) 0%,rgba(10,20,51,.8) 12%,rgba(10,20,51,.15) 40%,rgba(10,20,51,0) 60%),
+  linear-gradient(0deg,rgba(10,20,51,.9) 0%,rgba(10,20,51,0) 34%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(90deg,#000 0%,transparent 45%);pointer-events:none}
+.hero-glow{position:absolute;width:620px;height:620px;border-radius:50%;left:-220px;top:-200px;background:radial-gradient(circle,rgba(28,138,224,.35),transparent 65%);pointer-events:none}
+.hero>.wrap{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;justify-content:center;padding:90px 0 150px}
+.hero-copy{max-width:720px}
+.hero .tag{color:var(--gold)}
+.hero h1{white-space:nowrap;font-size:clamp(46px,6.6vw,98px);line-height:.92;letter-spacing:-.045em;font-weight:900;margin:22px 0 26px}
+.hero h1 .l2{display:block;background:linear-gradient(90deg,var(--sky),var(--blue) 60%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .dot{color:var(--gold);-webkit-text-fill-color:var(--gold)}
+.hero-sub{font-size:19px;color:#c3cfee;max-width:540px}
+.hero-sub strong{color:#fff;font-weight:600}
+.rotor{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-weight:600;color:#fff}
+.rotor .mono{color:#8ea0cf;font-size:11px}
+.rotor .w{display:inline-block;height:1.5em;overflow:hidden;vertical-align:bottom}
+.rotor .w span{display:block;line-height:1.5em;color:var(--gold);font-family:var(--display);font-weight:800;font-size:19px;transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.qbar{margin-top:34px;display:flex;align-items:stretch;background:#fff;border-radius:18px;padding:8px;gap:6px;max-width:620px;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.qbar label{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6px 14px;border-radius:12px;color:var(--ink);cursor:pointer;transition:background .2s;min-width:0}
+.qbar label:hover{background:var(--paper)}
+.qbar label+label{border-left:1px solid var(--line);border-radius:0 12px 12px 0}
+.qbar small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.qbar select{border:0;background:transparent;font-weight:700;font-size:16px;outline:none;cursor:pointer;padding:2px 0;color:var(--ink);width:100%}
+.qbar .btn{border-radius:12px;padding:0 22px;white-space:nowrap}
+.hero-alt{display:flex;align-items:center;gap:18px;margin-top:18px;font-size:15px;color:#aebbdd;flex-wrap:wrap}
+.hero-alt a{color:#fff;font-weight:600;border-bottom:1px solid rgba(255,255,255,.35)}
+.hero-alt a:hover{border-color:var(--gold)}
+/* scan viewfinder over the photo */
+.scan{position:absolute;z-index:2;width:190px;height:250px;pointer-events:none;transition:left 1.4s cubic-bezier(.7,0,.2,1),top 1.4s cubic-bezier(.7,0,.2,1)}
+.scan i{position:absolute;width:30px;height:30px;border:3px solid var(--gold)}
+.scan i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+.scan i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.scan i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+.scan i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.scan::before{content:"";position:absolute;left:8px;right:8px;height:2px;top:10%;background:linear-gradient(90deg,transparent,var(--sky),transparent);box-shadow:0 0 14px var(--sky);animation:sweep 2.4s ease-in-out infinite}
+@keyframes sweep{0%,100%{top:10%}50%{top:88%}}
+.scan b{position:absolute;left:0;top:-46px;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);padding:8px 14px 8px 10px;border-radius:999px;font-size:13.5px;font-weight:700;box-shadow:0 12px 24px -12px rgba(0,0,0,.6)}
+.scan b em{width:20px;height:20px;border-radius:50%;background:#2fc576;display:grid;place-items:center;font-style:normal;color:#fff;font-size:12px}
+/* promise rail */
+.rail{position:absolute;z-index:4;left:0;right:0;bottom:0;border-top:1px solid rgba(255,255,255,.12);background:rgba(7,23,65,.55);backdrop-filter:blur(12px)}
+.rail .wrap{display:grid;grid-template-columns:auto repeat(4,1fr);gap:0;padding:0;flex:none}
+.rail .wrap>*{padding:22px 24px;display:flex;align-items:center;gap:12px;font-weight:600;font-size:15px;border-left:1px solid rgba(255,255,255,.1)}
+.rail .wrap>*:first-child{border-left:0;padding-left:0;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.rail svg{width:20px;height:20px;color:var(--sky);flex:none}
 
 /* ===== band (dark) under hero ===== */
-.band{background:var(--navy);color:#fff;padding:180px 0 74px;position:relative;overflow:hidden;z-index:1}
-.band::after{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 85% 10%,rgba(92,194,247,.22),transparent 70%);pointer-events:none}
+.band{background:#fff;color:var(--ink);padding:70px 0;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+
 .band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;z-index:1}
-.band-grid div{padding:6px 28px;border-left:1px solid rgba(255,255,255,.14)}
+.band-grid div{padding:6px 28px;border-left:1px solid var(--line)}
 .band-grid div:first-child{border-left:0;padding-left:0}
-.band-grid .mono{color:var(--gold)}
+.band-grid .mono{color:var(--blue)}
 .band-grid h3{font-size:22px;margin:10px 0 6px;letter-spacing:-.01em}
-.band-grid p{color:#b6c3e6;font-size:15px}
+.band-grid p{color:var(--muted);font-size:15px}
 
 /* ===== services index ===== */
 .services{padding:120px 0;background:var(--paper)}
@@ -365,12 +390,16 @@ footer a:hover{color:#fff}
 }
 @media (max-width:960px){
   .topbar .note{display:none}
-  .hero-top,.svc,.qb,.about-grid,.areas-grid,.faq-grid,.close-box{grid-template-columns:1fr}
-  .hero-top{gap:24px}
-  .hero-media{margin-bottom:0}
-  .hero-media .img{aspect-ratio:16/10}
-  .promise{position:relative;right:auto;bottom:auto;width:auto;margin:-50px 18px 0}
-  .band{padding:70px 0 60px;margin-top:-40px;padding-top:110px}
+  .svc,.qb,.about-grid,.areas-grid,.faq-grid,.close-box{grid-template-columns:1fr}
+  .hero-bg{width:100%}
+  .hero-bg img{object-position:62% center}
+  .hero-bg::after{background:linear-gradient(0deg,var(--ink) 8%,rgba(10,20,51,.82) 55%,rgba(10,20,51,.55) 100%)}
+  .scan{display:none}
+  .hero>.wrap{padding:70px 0 40px}
+  .rail{position:relative}
+  .rail .wrap{grid-template-columns:1fr 1fr;padding:0}
+  .rail .wrap>*:first-child{grid-column:1/-1;padding:18px 0 4px}
+  .rail .wrap>*{border-left:0;padding:12px 0}
   .band-grid{grid-template-columns:1fr 1fr;row-gap:30px}
   .band-grid div:nth-child(3){border-left:0;padding-left:0}
   .svc-panel{display:none}
@@ -396,6 +425,9 @@ footer a:hover{color:#fff}
   .wrap{width:calc(100% - 36px)}
   .topbar .links{gap:14px;font-size:13px}
   .topbar .links a:nth-child(3){display:none}
+  .qbar{flex-direction:column}
+  .qbar label+label{border-left:0;border-top:1px solid var(--line);border-radius:0}
+  .qbar .btn{padding:15px 22px;justify-content:center}
   .brand img{width:52px;height:52px}
   .brand b{font-size:19px}
   nav.main .btn{display:none}
@@ -451,35 +483,35 @@ footer a:hover{color:#fff}
 <main id="top">
 <!-- hero -->
 <section class="hero">
+  <div class="hero-bg"><img src="images/hero-team.webp" alt="Precision Janitorial team vacuuming carpet and cleaning interior glass in an office after hours"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="scan" id="scan" aria-hidden="true"><i></i><i></i><i></i><i></i><b><em>&#10003;</em><span id="scanTxt">Carpet care</span></b></div>
   <div class="wrap">
-    <div class="hero-top">
-      <div class="rv">
-        <span class="tag">Commercial cleaning &amp; facility services</span>
-        <h1 style="margin-top:22px">Clean spaces<span class="dot">.</span><span class="l2">Better places<span class="dot">.</span></span></h1>
-      </div>
-      <div class="hero-side rv">
-        <p>A better first impression starts with Precision. Dependable commercial cleaning <strong>built around your people, your property, and your schedule</strong> across Alberta and Atlantic Canada.</p>
-        <div class="hero-ctas">
-          <a href="#quote" class="btn btn-gold">Request a free quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="#services" class="btn btn-line">Explore services</a>
-        </div>
-      </div>
+    <div class="hero-copy rv">
+      <span class="tag">Commercial cleaning &amp; facility services</span>
+      <h1>Clean spaces<span class="dot">.</span><span class="l2">Better places<span class="dot">.</span></span></h1>
+      <p class="hero-sub">A better first impression starts with Precision. Dependable commercial cleaning <strong>built around your people, your property, and your schedule.</strong></p>
+      <div class="rotor"><span class="mono">Trusted in</span><span class="w"><span id="rotor">Alberta</span></span></div>
+      <form class="qbar" id="qbar">
+        <label><small>Facility</small>
+          <select id="qbEnv"><option>Office</option><option>Clinic</option><option>Property</option><option>Industrial</option><option>Construction</option><option>Learning space</option></select>
+        </label>
+        <label><small>Province</small>
+          <select id="qbProv"><option>Alberta</option><option>New Brunswick</option><option>Nova Scotia</option><option value="Prince Edward Island">PEI</option><option value="Newfoundland and Labrador">Newfoundland &amp; Labrador</option></select>
+        </label>
+        <button type="submit" class="btn btn-gold">Get a free quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+      <div class="hero-alt"><span>Prefer to talk?</span><a href="tel:+13689976969">(368) 997-6969</a><a href="#services">Explore services</a></div>
     </div>
-    <div class="ruler" aria-hidden="true"></div>
-    <div class="hero-media frame rv">
-      <span class="fb"></span>
-      <div class="img"><img src="images/hero-team.webp" alt="Precision Janitorial team vacuuming and cleaning glass in an office after hours"></div>
-      <div class="hero-chip"><i></i>After-hours crews on site</div>
-      <div class="promise">
-        <div class="mono"><span>The Precision Promise</span><span>&#10003; 4/4</span></div>
-        <h4>Commercial cleaning. Done right.</h4>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>Insured commercial service</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>Facility-specific cleaning plans</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>Flexible service schedules</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>Quality checks and follow-up</li>
-        </ul>
-      </div>
+  </div>
+  <div class="rail">
+    <div class="wrap">
+      <span>The Precision Promise</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Insured commercial service</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Facility-specific plans</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Flexible schedules</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Quality checks &amp; follow-up</span>
     </div>
   </div>
 </section>
@@ -872,6 +904,23 @@ function upd(){
 f.addEventListener('input',upd);f.addEventListener('change',upd);upd();
 document.getElementById('briefNo').textContent='PJ-'+String(Math.floor(1000+Math.random()*9000));
 f.addEventListener('submit',e=>{e.preventDefault();document.getElementById('sent').style.display='block'});
+
+
+/* hero: rotor, scan, quick quote */
+(()=>{
+  const words=['Alberta','New Brunswick','Nova Scotia','Prince Edward Island','Newfoundland & Labrador'];
+  const r=document.getElementById('rotor');let i=0;
+  setInterval(()=>{i=(i+1)%words.length;r.style.transform='translateY(-110%)';setTimeout(()=>{r.style.transition='none';r.textContent=words[i];r.style.transform='translateY(110%)';r.offsetHeight;r.style.transition='';r.style.transform='translateY(0)'},600)},2600);
+  const sc=document.getElementById('scan'),st=document.getElementById('scanTxt'),hero=document.querySelector('.hero');
+  const spots=[{x:.53,y:.5,t:'Carpet care'},{x:.855,y:.2,t:'Interior glass'}];let k=0;
+  function place(){const h=hero.getBoundingClientRect();const s=spots[k];sc.style.left=(h.width*s.x)+'px';sc.style.top=(h.height*s.y)+'px';st.textContent=s.t}
+  place();addEventListener('resize',place);setInterval(()=>{k=(k+1)%spots.length;place()},3600);
+  document.getElementById('qbar').addEventListener('submit',e=>{e.preventDefault();
+    const env=document.getElementById('qbEnv').value,prov=document.getElementById('qbProv').value;
+    const a=document.querySelector(`#qbForm [name=env][value="${env}"]`),b=document.querySelector(`#qbForm [name=prov][value="${prov}"]`);
+    if(a)a.checked=true;if(b)b.checked=true;document.getElementById('qbForm').dispatchEvent(new Event('change'));
+    document.getElementById('quote').scrollIntoView({behavior:'smooth'});});
+})();
 
 /* header + reveal */
 const hdr=document.getElementById('hdr');
