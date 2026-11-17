@@ -216,16 +216,45 @@ nav.main .btn{margin-left:10px;padding:13px 22px}
 .value p{color:var(--muted);font-size:15px}
 
 /* ===== process ===== */
-.process{padding:110px 0 120px;background:linear-gradient(180deg,#eaf4fd,#f7fbff)}
-.process .sec-head{margin-bottom:70px}
-.track{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative}
-.track::before{content:"";position:absolute;top:31px;left:32px;right:calc(25% - 32px);height:2px;background:repeating-linear-gradient(90deg,var(--blue) 0 10px,transparent 10px 18px)}
-.st{position:relative}
-.st .dial{width:64px;height:64px;border-radius:50%;background:#fff;border:2px solid var(--blue);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:22px;color:var(--blue);position:relative;z-index:1;transition:.3s}
-.st:hover .dial{background:var(--blue);color:#fff;transform:scale(1.06)}
-.st:last-child .dial{background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.st h4{font-size:22px;margin:24px 0 10px;letter-spacing:-.015em}
-.st p{color:var(--muted);font-size:15.5px}
+.process{padding:40px 0 120px}
+.proc-box{position:relative;background:var(--navy);border-radius:32px;padding:84px 64px 74px;color:#fff;overflow:hidden;isolation:isolate}
+.proc-box::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(520px 320px at 92% 8%,rgba(92,194,247,.28),transparent 70%),
+  radial-gradient(420px 300px at 0% 100%,rgba(253,191,18,.14),transparent 70%)}
+.proc-box::after{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 75%)}
+.proc-head{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:end;margin-bottom:64px}
+.proc-head .tag{color:var(--gold)}
+.proc-head h2{margin-top:14px}
+.proc-head h2 em{font-style:normal;color:var(--sky)}
+.proc-head p{color:#b6c3e6;max-width:430px;justify-self:end}
+.stairs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start;position:relative}
+.stairs svg.path{position:absolute;left:0;top:-30px;width:100%;height:calc(100% + 30px);z-index:0;pointer-events:none;overflow:visible}
+.stairs svg.path path{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:6 8;opacity:.55}
+.sc{position:relative;z-index:1;background:#fff;color:var(--ink);border-radius:22px;padding:26px 24px 24px;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;box-shadow:0 30px 50px -36px rgba(0,0,0,.8)}
+.sc:nth-child(2){margin-bottom:0}
+.sc.s1{margin-top:150px}.sc.s2{margin-top:100px}.sc.s3{margin-top:50px}.sc.s4{margin-top:0}
+.sc::before{content:"";position:absolute;left:0;top:0;right:0;height:5px;background:var(--blue);transform:scaleX(.18);transform-origin:left;transition:transform .5s}
+.sc:hover{transform:translateY(-8px)}
+.sc:hover::before{transform:scaleX(1)}
+.sc .big{position:absolute;right:14px;top:10px;font-size:96px!important;font-family:var(--display);font-weight:900;font-size:120px;line-height:1;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px #d6deef;transition:-webkit-text-stroke-color .4s}
+.sc:hover .big{-webkit-text-stroke-color:var(--sky)}
+.sc .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:#e7f3fd;color:var(--blue);position:relative}
+.sc .ic svg{width:26px;height:26px}
+.sc .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:22px 0 6px}
+.sc h4{font-size:23px;letter-spacing:-.02em;line-height:1.08;margin-bottom:10px;position:relative}
+.sc p{color:var(--muted);font-size:15px;position:relative}
+.sc .out{display:flex;align-items:center;gap:8px;margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);font-weight:700;font-size:14px}
+.sc .out svg{width:18px;height:18px;color:var(--blue);flex:none}
+.sc.s4{background:var(--gold)}
+.sc.s4::before{background:var(--ink)}
+.sc.s4 .big{-webkit-text-stroke-color:rgba(10,20,51,.25)}
+.sc.s4 .ic{background:var(--ink);color:var(--gold)}
+.sc.s4 p,.sc.s4 .lbl{color:#4a3a00}
+.sc.s4 .out{border-color:rgba(10,20,51,.25)}
+.sc.s4 .out svg{color:var(--ink)}
+.proc-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:54px;padding-top:30px;border-top:1px solid rgba(255,255,255,.12)}
+.proc-foot p{color:#b6c3e6}
+.proc-foot p b{color:#fff}
 
 /* ===== plans ===== */
 .plans{padding:120px 0}
@@ -351,8 +380,12 @@ footer a:hover{color:#fff}
   .svc-list li:not(.on) .mob{display:none}
   .brief{position:relative;top:0}
   .about-pic .hq{right:16px}
-  .track{grid-template-columns:1fr 1fr;row-gap:44px}
-  .track::before{display:none}
+  .proc-box{padding:56px 26px 50px;border-radius:24px}
+  .proc-head{grid-template-columns:1fr;gap:16px}
+  .proc-head p{justify-self:start}
+  .stairs{grid-template-columns:1fr 1fr}
+  .stairs svg.path{display:none}
+  .sc.s1,.sc.s2,.sc.s3,.sc.s4{margin-top:0}
   .close-box .pic{min-height:260px;order:-1}
   .close-box .pic::before{background:linear-gradient(0deg,var(--blue),transparent 55%)}
   .close-box .txt{padding:40px 30px 46px}
@@ -367,7 +400,7 @@ footer a:hover{color:#fff}
   .brand b{font-size:19px}
   nav.main .btn{display:none}
   .burger{display:inline-flex}
-  .band-grid,.values,.track,.fields,.f-grid{grid-template-columns:1fr}
+  .band-grid,.values,.stairs,.fields,.f-grid{grid-template-columns:1fr}
   .band-grid div{border-left:0;padding-left:0}
   .qb-form{padding:22px}
   .freq{flex-direction:column;align-items:stretch}
@@ -590,15 +623,46 @@ footer a:hover{color:#fff}
 <!-- process -->
 <section class="process" id="process">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div><span class="tag">Why Precision</span><h2 style="margin-top:14px">Four steps from<br>walkthrough to launch.</h2></div>
-      <p>No guesswork. Every account starts with your site and ends with a plan we keep improving.</p>
-    </div>
-    <div class="track">
-      <div class="st rv"><div class="dial">01</div><h4>Walkthrough &amp; needs review</h4><p>We assess the facility, your priorities, access and schedule.</p></div>
-      <div class="st rv"><div class="dial">02</div><h4>Defined scope &amp; proposal</h4><p>You receive a service plan with tasks, frequencies and expectations.</p></div>
-      <div class="st rv"><div class="dial">03</div><h4>Trained team &amp; launch</h4><p>Site-specific orientation and checklists for a safe start.</p></div>
-      <div class="st rv"><div class="dial">04</div><h4>Quality checks &amp; improvement</h4><p>We review service, follow up on issues and adapt the plan.</p></div>
+    <div class="proc-box">
+      <div class="proc-head rv">
+        <div><span class="tag">Why Precision</span><h2>Four steps from walkthrough <em>to launch.</em></h2></div>
+        <p>No guesswork. Every account starts with your site and ends with a plan we keep improving.</p>
+      </div>
+      <div class="stairs">
+        <svg class="path" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true"><path d="M60 230 C 200 230, 210 170, 310 170 S 470 120, 560 120 S 730 70, 810 70 S 940 20, 990 20"/></svg>
+        <div class="sc s1 rv"><span class="big">01</span>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+          <div class="lbl">Step 01 &middot; Assess</div>
+          <h4>Walkthrough &amp; needs review</h4>
+          <p>We assess the facility, your priorities, access and schedule.</p>
+          <div class="out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Your site, understood</div>
+        </div>
+        <div class="sc s2 rv"><span class="big">02</span>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
+          <div class="lbl">Step 02 &middot; Plan</div>
+          <h4>Defined scope &amp; proposal</h4>
+          <p>You receive a service plan with tasks, frequencies and expectations.</p>
+          <div class="out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>A written service plan</div>
+        </div>
+        <div class="sc s3 rv"><span class="big">03</span>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2M16 11l2 2 4-4"/></svg></div>
+          <div class="lbl">Step 03 &middot; Launch</div>
+          <h4>Trained team &amp; launch</h4>
+          <p>Site-specific orientation and checklists for a safe start.</p>
+          <div class="out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Checklists from day one</div>
+        </div>
+        <div class="sc s4 rv"><span class="big">04</span>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <div class="lbl">Step 04 &middot; Improve</div>
+          <h4>Quality checks &amp; improvement</h4>
+          <p>We review service, follow up on issues and adapt the plan.</p>
+          <div class="out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>A plan that keeps improving</div>
+        </div>
+      </div>
+      <div class="proc-foot rv">
+        <p><b>It all starts with a walkthrough.</b> Tell us about your facility and we'll take it from there.</p>
+        <a href="#quote" class="btn btn-gold">Request a free quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
   </div>
 </section>
